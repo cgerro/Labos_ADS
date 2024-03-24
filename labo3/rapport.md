@@ -44,17 +44,17 @@ have to go edit a couple of files... So, here's the checklist:
 ```
 ./out 2>&1 | grep –i eeeee
 ```
-2. La commande `./out 2>&1` affiche `OEOEOEOEOE` dans le terminal. Cette sortie est redirigée grâce à l'opérateur pipe comme entrée de la commande `grep –i eeeee` qui est censé rechercher la chaîne "eeeee" sans être sensible à la casse. Cependant cette commande ne retourne rien comme résultat?? **BIZARRE ou NORMAL ?**
+2. La commande `./out 2>&1` affiche `OEOEOEOEOE` dans le terminal. Cette sortie est redirigée grâce à l'opérateur pipe comme entrée de la commande `grep –i eeeee` qui est censé rechercher la chaîne "eeeee" sans être sensible à la casse. Cette commande ne retourne rien comme résultat car la chaîne recherchée ne correspond pas à l'output de `./out`.
 ---
 
 ```
 ./out 2>&1 >/dev/null | grep –i eeeee
 ```
-3. La commande `./out 2>&1` affiche `OEOEOEOEOE` dans le terminal comme la commande précédente. `>/dev/null` redirige la sortie standard stdout vers `/dev/null`, une destination fictive. Cela signifie que toute sortie normal produite par `./out` sera jetée et ne sera pas affichée par l'utilisateur. Cette sortie est transmise en entrée à la commande `grep` pour rechercher la chaîne "eeeee" avec une correspondance insensible à la casse. Le résultat ici est `EEEEE`.
+3. La commande `./out 2>&1` affiche `OEOEOEOEOE` dans le terminal comme la commande précédente. `>/dev/null` redirige la sortie d'erreur `stderr` vers `/dev/null`, une destination fictive. Cela signifie que tout message d'erreur produit par `./out` sera jetée et ne sera pas affichée, la chaîne `EEEEE` est donc  transmise en entrée à la commande `grep` pour rechercher la chaîne "eeeee" avec une correspondance insensible à la casse. Le résultat ici est `EEEEE`.
 ---
 
 > Write commands to perform the following tasks:
-1. Produce a recursive listing, using `ls`, of files and directories in your home directory, including hidden files, in the file `/tmp/homefileslist` 
+1. Produce a recursive listing, using `ls`, of files and directories in your home directory, including hidden files, in the file `/tmp/homefileslist`.
 
 ```
 ls -R /home/yourusername > /tmp/homefileslist
