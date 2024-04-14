@@ -1,11 +1,12 @@
 # ADS Lab 04 - Scripting
 Authors: Céline Roger et Grégoire Guyot
+
 Date: 8 avril 2024
 ## Task 1: Set up web directory
 1. Create the directory public_html. Create a file foo.txt in it and retrieve the file using the browser on your local machine.
+
 ```
 echo "Hello, I am labi!" > ~/public_html/foo.txt
-
 ```
 2. Navigate to the URL http://ads.iict.ch/~albert_einstein/foo.txt. You should see the contents of the file.
 
@@ -14,10 +15,12 @@ echo "Hello, I am labi!" > ~/public_html/foo.txt
 ## Task 2: Create thumbnails
 1. Download a zip archive containing the picture and brochure files from this URL: http://ads.iict.ch/lab04_raw_files.zip Use the commands curl to download and unzip to unarchive.
 By placing the files into your web directory you can inspect them using your browser.
+
 ```
 curl -O http://ads.iict.ch/lab04_raw_files.zip
 unzip lab04_raw_files.zip
 ```
+
 ![alt text](image-1.png)
 
 ### `show_dimensions` script
@@ -34,10 +37,10 @@ for file in *.jpg *.png; do
         echo "Dimensions: $dimensions"
     fi
 done
-
 ```
 
 ### `rename_pictures` script
+
 ```
 #!/bin/bash
 
@@ -126,6 +129,7 @@ Selon l'hypothèse "The picture files are in the directory public_html/raw_files
 `mv lab04_raw_files raw_files` dans le dossier `public_html`.
 
 ### `make_html` script
+
 ```
 #!/bin/bash
 
@@ -178,6 +182,7 @@ echo "HTML file generated at $output_file"
 
 
 ## Task 4: Use SSH Tunneling
+
 ```
 ssh -L 5000:localhost:3306 labi@ads.iict.ch
 ```
